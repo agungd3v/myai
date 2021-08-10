@@ -1,5 +1,6 @@
 import pyttsx3
 import speech_recognition as sr
+import webbrowser
 
 engine = pyttsx3.init("sapi5")
 voices = engine.getProperty("voices")
@@ -24,3 +25,6 @@ def takeCommand():
       print("Say that again please...") 
       return "None"
     return query
+
+def openBrowser(url):
+  return webbrowser.get("C:/Program Files/Google/Chrome/Application/chrome.exe %s").open(url)

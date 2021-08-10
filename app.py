@@ -1,5 +1,4 @@
-from modules import speak, takeCommand
-import webbrowser
+from modules import speak, takeCommand, openBrowser
 
 if __name__ == "__main__":
   speak("I am your artificial intelligence, how can I help you?")
@@ -7,7 +6,7 @@ if __name__ == "__main__":
     query = takeCommand().lower()
     if "open youtube" in query:
       speak("Open youtube in browser...")
-      webbrowser.get("C:/Program Files/Google/Chrome/Application/chrome.exe %s").open("youtube.com")
+      openBrowser("youtube.com")
     elif "stop" in query:
       speak("Just call me, if there's anything you need. Byebye")
       break
