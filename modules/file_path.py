@@ -13,7 +13,7 @@ def findmyfiles(file, path):
           ADD_SLASH = "/" + trimpath
           find = fnmatch.filter(os.listdir(path + ADD_SLASH), file)
           if len(find) > 0:
-            return find
+            find = fnmatch.filter(os.listdir(path + ADD_SLASH), file)
           elif FILE_PATH[-1] == trimpath:
             return []
         except Exception as e:
