@@ -1,13 +1,13 @@
 from modules import speak, takeCommand, openBrowser, playMusic
 
-WAKE = "hey buddy"
+WAKE = "buddy"
 
 while True:
   print("Listening...")
   query = takeCommand()
 
   if query.count(WAKE) > 0:
-    speak("hey, do you need help ?")
+    speak("hi, do you need help ?")
     print("Listening...")
     query = takeCommand()
 
