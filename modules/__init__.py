@@ -11,27 +11,24 @@ SUB_LEVEL_PATH = ["Documents", "Desktop", "Downloads", "Pictures", "Videos", "Mu
 ADD_SLASH = None
 PATH_DILIMITER = "/"
 
-engine = pyttsx3.init("sapi5")
-voices = engine.getProperty("voices")
-
-engine.setProperty("voice", voices[1].id)
-
 def speak(audio):
+  engine = pyttsx3.init("sapi5")
+  voices = engine.getProperty("voices")
+  engine.setProperty("voice", voices[1].id)
   engine.say(audio)
   engine.runAndWait()
 
 def takeCommand():
   r = sr.Recognizer()
   with sr.Microphone() as source:
-    print("Listening...")
     audio = r.listen(source)
-
+    saying = ""
     try:
-      saying = r.recognize_google(audio, language = 'en-US')
+      saying = r.recognize_google(audio)
+      print(saying)
     except Exception as e:
-      print("Say that again please...")
-      return "None"
-    return saying
+      print("Exception: " + str(e))
+  return saying.lower()
 
 def openBrowser(url):
   return webbrowser.get("C:/Program Files/Google/Chrome/Application/chrome.exe %s").open(url)
@@ -65,8 +62,8 @@ def playMusic():
     askPlayMusic(folder_found)
 
 def askPlayMusic(path_music):
-  speak("OK, I found the folder. Do you want to play all the songs in this folder ?")
-  say = takeCommand().lower()
+  speak("I found the folder. Do you want to play all the songs in this folder ?")
+  say = takeCommand()
   if "yes" in say:
     l_files = os.listdir(path_music)
     for fl in l_files:
