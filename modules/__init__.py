@@ -86,15 +86,17 @@ def askPlayMusic(path_music):
       music_list.append(file_path)
   if len(music_list) > 0:
     speak(f"I found {len(music_list)} songs in the folder. Do you want to play all the songs in this folder ?")
-    say = takeCommand().lower()
-    if "yes" in say:
-      speak("have a nice day")
-      for music in music_list:
-        try:
-          audio = MP3(music)
-          audio_info = audio.info
-          os.startfile(music)
-          print(f'Playing {music.split("/")[-1]}')
-          time.sleep(int(audio_info.length))
-        except:
-          print("error please check")
+    while True:
+      say = takeCommand().lower()
+      if "yes" in say:
+        speak("have a nice day")
+        for music in music_list:
+          try:
+            audio = MP3(music)
+            audio_info = audio.info
+            os.startfile(music)
+            print(f'Playing {music.split("/")[-1]}')
+            time.sleep(int(audio_info.length))
+          except:
+            print("error please check")
+        break
